@@ -1,0 +1,73 @@
+# Demonstração de classes em Pitão
+
+classe Animal:
+    """Classe base para animais."""
+    
+    definir __init__(self, nome):
+        self.nome = nome
+    
+    definir falar(self):
+        passar
+    
+    definir apresentar(self):
+        print(f"Eu sou {self.nome}")
+
+classe Cachorro(Animal):
+    """Um cachorro que late."""
+    
+    definir falar(self):
+        print(f"{self.nome} diz: Au au!")
+
+classe Gato(Animal):
+    """Um gato que mia."""
+    
+    definir falar(self):
+        print(f"{self.nome} diz: Miau!")
+
+classe Calculadora:
+    """Uma calculadora simples."""
+    
+    definir __init__(self):
+        self.resultado = 0
+    
+    definir somar(self, a, b):
+        self.resultado = a + b
+        retornar self.resultado
+    
+    definir subtrair(self, a, b):
+        self.resultado = a - b
+        retornar self.resultado
+    
+    definir multiplicar(self, a, b):
+        self.resultado = a * b
+        retornar self.resultado
+    
+    definir dividir(self, a, b):
+        se b == 0:
+            levantar ValueError("Divisão por zero!")
+        self.resultado = a / b
+        retornar self.resultado
+
+se __name__ == "__main__":
+    print("=== Animais ===")
+    rex = Cachorro("Rex")
+    mimi = Gato("Mimi")
+    
+    para animal em [rex, mimi]:
+        animal.apresentar()
+        animal.falar()
+    
+    print("\n=== Calculadora ===")
+    calc = Calculadora()
+    print(f"10 + 5 = {calc.somar(10, 5)}")
+    print(f"10 - 5 = {calc.subtrair(10, 5)}")
+    print(f"10 * 5 = {calc.multiplicar(10, 5)}")
+    print(f"10 / 5 = {calc.dividir(10, 5)}")
+    
+    print("\n=== Tratamento de Exceção ===")
+    tentar:
+        calc.dividir(10, 0)
+    exceto ValueError como erro:
+        print(f"Erro capturado: {erro}")
+    finalmente:
+        print("Operação finalizada")

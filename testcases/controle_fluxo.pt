@@ -1,0 +1,50 @@
+# Demonstração de controle de fluxo em Pitão
+
+definir fibonacci(n):
+    """Calcula o n-ésimo número de Fibonacci."""
+    se n <= 0:
+        retornar 0
+    senaose n == 1:
+        retornar 1
+    senao:
+        retornar fibonacci(n - 1) + fibonacci(n - 2)
+
+definir fatorial(n):
+    """Calcula o fatorial de n."""
+    resultado = 1
+    para i em range(1, n + 1):
+        resultado = resultado * i
+    retornar resultado
+
+definir contador(limite):
+    """Conta até o limite."""
+    i = 0
+    enquanto i < limite:
+        print(f"Contando: {i}")
+        i = i + 1
+
+definir buscar_item(lista, alvo):
+    """Busca um item em uma lista."""
+    para item em lista:
+        se item == alvo:
+            print(f"Encontrado: {item}")
+            quebrar
+    senao:
+        print("Item não encontrado")
+
+se __name__ == "__main__":
+    print("=== Fibonacci ===")
+    para n em range(10):
+        print(f"fib({n}) = {fibonacci(n)}")
+    
+    print("\n=== Fatorial ===")
+    para n em range(1, 8):
+        print(f"{n}! = {fatorial(n)}")
+    
+    print("\n=== Contador ===")
+    contador(5)
+    
+    print("\n=== Busca ===")
+    frutas = ["maçã", "banana", "laranja"]
+    buscar_item(frutas, "banana")
+    buscar_item(frutas, "uva")
