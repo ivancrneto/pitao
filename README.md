@@ -20,8 +20,10 @@ uv sync
 
 ## Exemplo de Código
 
+Pitão suporta arquivos com extensão `.pt` ou `.pit`:
+
 ```python
-# ola_mundo.pt
+# ola_mundo.pt (ou ola_mundo.pit)
 definir ola_mundo():
     imprimir("Olá, Mundo!")
 
@@ -33,6 +35,8 @@ Execute com:
 
 ```bash
 pitao ola_mundo.pt
+# ou
+pitao ola_mundo.pit
 ```
 
 ## Palavras Reservadas

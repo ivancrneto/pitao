@@ -62,17 +62,17 @@ PORTUGUESE_TO_PYTHON = {
 PYTHON_TO_PORTUGUESE = {v: k for k, v in PORTUGUESE_TO_PYTHON.items()}
 
 
-def _ends_in_pt(word):
+def _is_pitao_file(word):
     """
-    Returns True if word ends in .pt, else False
+    Returns True if word ends in .pt or .pit, else False
 
     Args:
         word (str): Filename to check
 
     Returns:
-        boolean: Whether 'word' ends with '.pt' or not
+        boolean: Whether 'word' ends with '.pt' or '.pit'
     """
-    return word.endswith(".pt")
+    return word.endswith(".pt") or word.endswith(".pit")
 
 
 def _change_file_name(name, outputname=None, reverse=False):
@@ -95,7 +95,9 @@ def _change_file_name(name, outputname=None, reverse=False):
             return name[:-3] + ".pt"
         return name + ".pt"
     else:
-        if _ends_in_pt(name):
+        if name.endswith(".pit"):
+            return name[:-4] + ".py"
+        if name.endswith(".pt"):
             return name[:-3] + ".py"
         return name + ".py"
 
@@ -103,13 +105,13 @@ def _change_file_name(name, outputname=None, reverse=False):
 def parse_imports(filename):
     """
     Reads the file and scans for imports. Returns all the assumed filenames
-    of all the imported modules (ie, module name appended with ".pt")
+    of all the imported modules (ie, module name appended with ".pt" and ".pit")
 
     Args:
         filename (str): Path to file
 
     Returns:
-        list of str: All imported modules, suffixed with '.pt'
+        list of str: All imported modules, suffixed with '.pt' and '.pit'
     """
     with open(filename, 'r', encoding='utf-8') as infile:
         infile_str = infile.read()
@@ -120,7 +122,9 @@ def parse_imports(filename):
     imports2 = re.findall(r"(?<=de\s)[\w.]+(?=\s+importar)", infile_str)
     imports2 += re.findall(r"(?<=from\s)[\w.]+(?=\s+import)", infile_str)
 
-    imports_with_suffixes = [im + ".pt" for im in imports + imports2]
+    # Return both .pt and .pit suffixes for each import
+    all_imports = imports + imports2
+    imports_with_suffixes = [im + ".pt" for im in all_imports] + [im + ".pit" for im in all_imports]
     return imports_with_suffixes
 
 
