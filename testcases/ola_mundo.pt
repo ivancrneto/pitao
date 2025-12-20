@@ -1,10 +1,10 @@
 # Olá Mundo em Pitão!
 
-definir ola_mundo():
+def ola_mundo():
     """Uma função simples que imprime uma saudação."""
     print("Olá, Mundo!")
 
-definir saudacao(nome):
+def saudacao(nome):
     """Sauda uma pessoa pelo nome."""
     se nome:
         print(f"Olá, {nome}!")

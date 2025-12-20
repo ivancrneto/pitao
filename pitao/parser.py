@@ -24,31 +24,31 @@ PORTUGUESE_TO_PYTHON = {
     "senao": "else",
     "para": "for",
     "enquanto": "while",
-    "quebrar": "break",
-    "continuar": "continue",
-    "passar": "pass",
+    "quebre": "break",
+    "continue": "continue",
+    "passe": "pass",
     
     # Exception handling
-    "tentar": "try",
+    "tente": "try",
     "exceto": "except",
     "finalmente": "finally",
-    "levantar": "raise",
+    "levante": "raise",
     
     # Functions and classes
-    "definir": "def",
+    "def": "def",
     "classe": "class",
-    "retornar": "return",
-    "produzir": "yield",
+    "retorne": "return",
+    "produza": "yield",
     
     # Async
     "assincrono": "async",
-    "aguardar": "await",
+    "aguarde": "await",
     
     # Other keywords
     "como": "as",
-    "afirmar": "assert",
-    "deletar": "del",
-    "importar": "import",
+    "afirme": "assert",
+    "del": "del",
+    "importe": "import",
     "de": "from",
     "em": "in",
     "eh": "is",
@@ -116,10 +116,10 @@ def parse_imports(filename):
     with open(filename, 'r', encoding='utf-8') as infile:
         infile_str = infile.read()
 
-    # Match both Portuguese "importar" and English "import"
-    imports = re.findall(r"(?<=importar\s)[\w.]+(?=;|\s|$)", infile_str)
+    # Match both Portuguese "importe" and English "import"
+    imports = re.findall(r"(?<=importe\s)[\w.]+(?=;|\s|$)", infile_str)
     imports += re.findall(r"(?<=import\s)[\w.]+(?=;|\s|$)", infile_str)
-    imports2 = re.findall(r"(?<=de\s)[\w.]+(?=\s+importar)", infile_str)
+    imports2 = re.findall(r"(?<=de\s)[\w.]+(?=\s+importe)", infile_str)
     imports2 += re.findall(r"(?<=from\s)[\w.]+(?=\s+import)", infile_str)
 
     # Return both .pt and .pit suffixes for each import

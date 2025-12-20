@@ -24,7 +24,7 @@ Pitão suporta arquivos com extensão `.pt` ou `.pit`:
 
 ```python
 # ola_mundo.pt (ou ola_mundo.pit)
-definir ola_mundo():
+def ola_mundo():
     imprimir("Olá, Mundo!")
 
 se __nome__ == "__principal__":
@@ -43,21 +43,21 @@ pitao ola_mundo.pit
 
 | Português | Python | | Português | Python |
 |-----------|--------|---|-----------|--------|
-| `Falso` | `False` | | `importar` | `import` |
+| `Falso` | `False` | | `importe` | `import` |
 | `Nulo` | `None` | | `em` | `in` |
 | `Verdadeiro` | `True` | | `eh` | `is` |
 | `e` | `and` | | `nao` | `not` |
-| `ou` | `or` | | `passar` | `pass` |
-| `se` | `if` | | `retornar` | `return` |
-| `senaose` | `elif` | | `tentar` | `try` |
+| `ou` | `or` | | `passe` | `pass` |
+| `se` | `if` | | `retorne` | `return` |
+| `senaose` | `elif` | | `tente` | `try` |
 | `senao` | `else` | | `exceto` | `except` |
 | `para` | `for` | | `finalmente` | `finally` |
-| `enquanto` | `while` | | `levantar` | `raise` |
-| `quebrar` | `break` | | `com` | `with` |
-| `continuar` | `continue` | | `produzir` | `yield` |
-| `definir` | `def` | | `assincrono` | `async` |
-| `classe` | `class` | | `aguardar` | `await` |
-| `deletar` | `del` | | `afirmar` | `assert` |
+| `enquanto` | `while` | | `levante` | `raise` |
+| `quebre` | `break` | | `com` | `with` |
+| `continue` | `continue` | | `produza` | `yield` |
+| `def` | `def` | | `assincrono` | `async` |
+| `classe` | `class` | | `aguarde` | `await` |
+| `del` | `del` | | `afirme` | `assert` |
 | `de` | `from` | | `como` | `as` |
 | `global` | `global` | | `naolocal` | `nonlocal` |
 
