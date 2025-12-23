@@ -1,0 +1,53 @@
+name: tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Run tests
+        run: |
+          echo "🐍 Running tests on Python ${{ matrix.python-version }}"
+          # Test pt2py translation
+          uv run pt2py testcases/ola_mundo.pt
+          uv run python testcases/ola_mundo.py
+          
+          # Test other examples
+          uv run pt2py testcases/controle_fluxo.pt
+          uv run python testcases/controle_fluxo.py
+          
+          uv run pt2py testcases/classes.pt
+          uv run python testcases/classes.py
+          
+          echo "✅ All tests passed!"
+
+      - name: Cleanup generated files
+        if: always()
+        run: |
+          rm -f testcases/*.py
