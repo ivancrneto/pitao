@@ -1,34 +1,34 @@
 # Demonstração de controle de fluxo em Pitão
 
-definir fibonacci(n):
+def fibonacci(n):
     """Calcula o n-ésimo número de Fibonacci."""
     se n <= 0:
-        retornar 0
+        retorne 0
     senaose n == 1:
-        retornar 1
+        retorne 1
     senao:
-        retornar fibonacci(n - 1) + fibonacci(n - 2)
+        retorne fibonacci(n - 1) + fibonacci(n - 2)
 
-definir fatorial(n):
+def fatorial(n):
     """Calcula o fatorial de n."""
     resultado = 1
     para i em range(1, n + 1):
         resultado = resultado * i
-    retornar resultado
+    retorne resultado
 
-definir contador(limite):
+def contador(limite):
     """Conta até o limite."""
     i = 0
     enquanto i < limite:
         print(f"Contando: {i}")
         i = i + 1
 
-definir buscar_item(lista, alvo):
+def buscar_item(lista, alvo):
     """Busca um item em uma lista."""
     para item em lista:
         se item == alvo:
             print(f"Encontrado: {item}")
-            quebrar
+            quebre
     senao:
         print("Item não encontrado")
 

@@ -3,50 +3,50 @@
 classe Animal:
     """Classe base para animais."""
     
-    definir __init__(self, nome):
+    def __init__(self, nome):
         self.nome = nome
     
-    definir falar(self):
-        passar
+    def falar(self):
+        passe
     
-    definir apresentar(self):
+    def apresentar(self):
         print(f"Eu sou {self.nome}")
 
 classe Cachorro(Animal):
     """Um cachorro que late."""
     
-    definir falar(self):
+    def falar(self):
         print(f"{self.nome} diz: Au au!")
 
 classe Gato(Animal):
     """Um gato que mia."""
     
-    definir falar(self):
+    def falar(self):
         print(f"{self.nome} diz: Miau!")
 
 classe Calculadora:
     """Uma calculadora simples."""
     
-    definir __init__(self):
+    def __init__(self):
         self.resultado = 0
     
-    definir somar(self, a, b):
+    def somar(self, a, b):
         self.resultado = a + b
-        retornar self.resultado
+        retorne self.resultado
     
-    definir subtrair(self, a, b):
+    def subtrair(self, a, b):
         self.resultado = a - b
-        retornar self.resultado
+        retorne self.resultado
     
-    definir multiplicar(self, a, b):
+    def multiplicar(self, a, b):
         self.resultado = a * b
-        retornar self.resultado
+        retorne self.resultado
     
-    definir dividir(self, a, b):
+    def dividir(self, a, b):
         se b == 0:
-            levantar ValueError("Divisão por zero!")
+            levante ValueError("Divisão por zero!")
         self.resultado = a / b
-        retornar self.resultado
+        retorne self.resultado
 
 se __name__ == "__main__":
     print("=== Animais ===")
@@ -65,9 +65,10 @@ se __name__ == "__main__":
     print(f"10 / 5 = {calc.dividir(10, 5)}")
     
     print("\n=== Tratamento de Exceção ===")
-    tentar:
+    tente:
         calc.dividir(10, 0)
     exceto ValueError como erro:
         print(f"Erro capturado: {erro}")
     finalmente:
         print("Operação finalizada")
+
