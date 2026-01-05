@@ -148,8 +148,9 @@ def main():
         for gen_file in generated_files:
             try:
                 os.remove(gen_file)
-            except:
-                pass
+            except Exception as e:
+                logger.log_error(f"Não foi possível deletar '{gen_file}'")
+                logger.log_info(f"Mensagem de erro: {str(e)}")
         sys.exit(1)
 
     # Stop if we were only asked to translate
@@ -183,8 +184,9 @@ def main():
         for gen_file in generated_files:
             try:
                 os.remove(gen_file)
-            except:
+            except Exception as e:
                 logger.log_error(f"Não foi possível deletar '{gen_file}'")
+                logger.log_info(f"Mensagem de erro: {str(e)}")
 
 
 if __name__ == '__main__':
