@@ -10,14 +10,12 @@ import os
 PORTUGUESE_TO_PYTHON = {
     # Boolean and None values
     "Falso": "False",
-    "Nulo": "None", 
+    "Nulo": "None",
     "Verdadeiro": "True",
-    
     # Logical operators
     "e": "and",
     "ou": "or",
     "nao": "not",
-    
     # Control flow
     "se": "if",
     "senaose": "elif",
@@ -27,23 +25,19 @@ PORTUGUESE_TO_PYTHON = {
     "quebre": "break",
     "continue": "continue",
     "passe": "pass",
-    
     # Exception handling
     "tente": "try",
     "exceto": "except",
     "finalmente": "finally",
     "levante": "raise",
-    
     # Functions and classes
     "def": "def",
     "classe": "class",
     "retorne": "return",
     "produza": "yield",
-    
     # Async
     "assincrono": "async",
     "aguarde": "await",
-    
     # Other keywords
     "como": "as",
     "afirme": "assert",
@@ -113,7 +107,7 @@ def parse_imports(filename):
     Returns:
         list of str: All imported modules, suffixed with '.pt' and '.pit'
     """
-    with open(filename, 'r', encoding='utf-8') as infile:
+    with open(filename, "r", encoding="utf-8") as infile:
         infile_str = infile.read()
 
     # Match both Portuguese "importe" and English "import"
@@ -124,7 +118,9 @@ def parse_imports(filename):
 
     # Return both .pt and .pit suffixes for each import
     all_imports = imports + imports2
-    imports_with_suffixes = [im + ".pt" for im in all_imports] + [im + ".pit" for im in all_imports]
+    imports_with_suffixes = [im + ".pt" for im in all_imports] + [
+        im + ".pit" for im in all_imports
+    ]
     return imports_with_suffixes
 
 
@@ -141,14 +137,14 @@ def translate_keywords(content, reverse=False):
         str: Translated source code
     """
     mapping = PYTHON_TO_PORTUGUESE if reverse else PORTUGUESE_TO_PYTHON
-    
+
     # Pattern to match strings and comments
     # This captures: triple-quoted strings, single/double quoted strings, and comments
-    string_pattern = r'(\"\"\"[\s\S]*?\"\"\"|\'\'\'[\s\S]*?\'\'\'|\"(?:[^\"\\]|\\.)*\"|\'(?:[^\'\\]|\\.)*\'|#.*$)'
-    
+    string_pattern = r"(\"\"\"[\s\S]*?\"\"\"|\'\'\'[\s\S]*?\'\'\'|\"(?:[^\"\\]|\\.)*\"|\'(?:[^\'\\]|\\.)*\'|#.*$)"
+
     # Split content preserving strings and comments
     parts = re.split(string_pattern, content, flags=re.MULTILINE)
-    
+
     result_parts = []
     for i, part in enumerate(parts):
         # Odd indices are the matched strings/comments, don't translate them
@@ -158,11 +154,11 @@ def translate_keywords(content, reverse=False):
             # Translate keywords in code
             translated_part = part
             for source, target in mapping.items():
-                pattern = r'\b' + re.escape(source) + r'\b'
+                pattern = r"\b" + re.escape(source) + r"\b"
                 translated_part = re.sub(pattern, target, translated_part)
             result_parts.append(translated_part)
-    
-    return ''.join(result_parts)
+
+    return "".join(result_parts)
 
 
 def parse_file(filepath, filename_prefix="", outputname=None, change_imports=None):
@@ -179,9 +175,11 @@ def parse_file(filepath, filename_prefix="", outputname=None, change_imports=Non
     filename = os.path.basename(filepath)
     filedir = os.path.dirname(filepath)
 
-    output_path = os.path.join(filedir, filename_prefix + _change_file_name(filename, outputname))
-    
-    with open(filepath, 'r', encoding='utf-8') as infile:
+    output_path = os.path.join(
+        filedir, filename_prefix + _change_file_name(filename, outputname)
+    )
+
+    with open(filepath, "r", encoding="utf-8") as infile:
         content = infile.read()
 
     # Translate Portuguese keywords to English
@@ -193,15 +191,15 @@ def parse_file(filepath, filename_prefix="", outputname=None, change_imports=Non
             translated = re.sub(
                 r"(?<=import\s){}".format(module),
                 "{} as {}".format(change_imports[module], module),
-                translated
+                translated,
             )
             translated = re.sub(
                 r"(?<=from\s){}(?=\s+import)".format(module),
                 change_imports[module],
-                translated
+                translated,
             )
 
-    with open(output_path, 'w', encoding='utf-8') as outfile:
+    with open(output_path, "w", encoding="utf-8") as outfile:
         outfile.write(translated)
 
     return output_path
@@ -220,17 +218,16 @@ def reverse_parse_file(filepath, filename_prefix="", outputname=None):
     filedir = os.path.dirname(filepath)
 
     output_path = os.path.join(
-        filedir, 
-        filename_prefix + _change_file_name(filename, outputname, reverse=True)
+        filedir, filename_prefix + _change_file_name(filename, outputname, reverse=True)
     )
-    
-    with open(filepath, 'r', encoding='utf-8') as infile:
+
+    with open(filepath, "r", encoding="utf-8") as infile:
         content = infile.read()
 
     # Translate English keywords to Portuguese
     translated = translate_keywords(content, reverse=True)
 
-    with open(output_path, 'w', encoding='utf-8') as outfile:
+    with open(output_path, "w", encoding="utf-8") as outfile:
         outfile.write(translated)
 
     return output_path

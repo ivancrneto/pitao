@@ -20,50 +20,41 @@ def main():
     argparser = argparse.ArgumentParser(
         "pitao",
         description="Pitão é um preprocessador Python que traduz palavras reservadas em Português para Inglês",
-        formatter_class=argparse.RawTextHelpFormatter
+        formatter_class=argparse.RawTextHelpFormatter,
     )
     argparser.add_argument(
-        "-V", "--version",
-        action="version",
-        version=f"Pitão v{VERSION_NUMBER}"
+        "-V", "--version", action="version", version=f"Pitão v{VERSION_NUMBER}"
     )
     argparser.add_argument(
-        "-v", "--verbose",
-        help="imprime progresso",
-        action="store_true"
+        "-v", "--verbose", help="imprime progresso", action="store_true"
     )
     argparser.add_argument(
-        "-c", "--compile",
+        "-c",
+        "--compile",
         help="traduz para Python apenas (não executa)",
-        action="store_true"
+        action="store_true",
     )
     argparser.add_argument(
-        "-k", "--keep",
-        help="mantém arquivos Python gerados",
-        action="store_true"
+        "-k", "--keep", help="mantém arquivos Python gerados", action="store_true"
     )
     argparser.add_argument(
-        "-2", "--python2",
+        "-2",
+        "--python2",
         help="usa python2 ao invés de python3 (padrão)",
-        action="store_true"
+        action="store_true",
     )
     argparser.add_argument(
-        "-o", "--output",
+        "-o",
+        "--output",
         type=str,
         help="especifica nome do arquivo de saída (com -c)",
-        nargs=1
+        nargs=1,
     )
     argparser.add_argument(
-        "input",
-        type=str,
-        help="arquivos Pitão para processar",
-        nargs=1
+        "input", type=str, help="arquivos Pitão para processar", nargs=1
     )
     argparser.add_argument(
-        "args",
-        type=str,
-        help="argumentos para o script",
-        nargs=argparse.REMAINDER
+        "args", type=str, help="argumentos para o script", nargs=argparse.REMAINDER
     )
 
     # Parse arguments
@@ -74,7 +65,9 @@ def main():
 
     # Check for invalid combination of flags
     if cmd_args.output is not None and cmd_args.compile is False:
-        logger.log_error("Não é possível especificar saída quando Pitão não está em modo de compilação")
+        logger.log_error(
+            "Não é possível especificar saída quando Pitão não está em modo de compilação"
+        )
         sys.exit(1)
 
     # Where to output files
@@ -135,10 +128,7 @@ def main():
                 outputname = cmd_args.output[0]
 
             output_path = parser.parse_file(
-                file,
-                path_prefix,
-                outputname,
-                import_translations
+                file, path_prefix, outputname, import_translations
             )
             generated_files.append(output_path)
 
@@ -163,15 +153,13 @@ def main():
     filename = os.path.basename(cmd_args.input[0])
     output_file = os.path.join(
         os.path.dirname(cmd_args.input[0]) or ".",
-        path_prefix + parser._change_file_name(filename, None)
+        path_prefix + parser._change_file_name(filename, None),
     )
 
     try:
         logger.log_info("Executando")
         logger.program_header()
-        os.system(
-            f"{python_command} {output_file} {' '.join(cmd_args.args)}"
-        )
+        os.system(f"{python_command} {output_file} {' '.join(cmd_args.args)}")
         logger.program_footer()
 
     except Exception as e:
@@ -189,5 +177,5 @@ def main():
                 logger.log_info(f"Mensagem de erro: {str(e)}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

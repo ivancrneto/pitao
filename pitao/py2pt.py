@@ -16,29 +16,19 @@ def main():
     argparser = argparse.ArgumentParser(
         "py2pt",
         description="Traduz arquivos Python (.py) para Pitão (.pt)",
-        formatter_class=argparse.RawTextHelpFormatter
+        formatter_class=argparse.RawTextHelpFormatter,
     )
     argparser.add_argument(
-        "-V", "--version",
-        action="version",
-        version=f"py2pt (Pitão v{VERSION_NUMBER})"
+        "-V", "--version", action="version", version=f"py2pt (Pitão v{VERSION_NUMBER})"
     )
     argparser.add_argument(
-        "-v", "--verbose",
-        help="imprime progresso",
-        action="store_true"
+        "-v", "--verbose", help="imprime progresso", action="store_true"
     )
     argparser.add_argument(
-        "-o", "--output",
-        type=str,
-        help="especifica nome do arquivo de saída",
-        nargs=1
+        "-o", "--output", type=str, help="especifica nome do arquivo de saída", nargs=1
     )
     argparser.add_argument(
-        "input",
-        type=str,
-        help="arquivos Python para traduzir",
-        nargs="+"
+        "input", type=str, help="arquivos Python para traduzir", nargs="+"
     )
 
     cmd_args = argparser.parse_args()
@@ -60,5 +50,5 @@ def main():
             logger.log_error(f"Erro ao traduzir '{input_file}': {str(e)}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
