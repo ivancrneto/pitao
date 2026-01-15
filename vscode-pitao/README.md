@@ -10,6 +10,12 @@ Syntax highlighting for **Pitão** - Python with Portuguese keywords.
 - Auto-closing pairs for brackets and strings
 - Smart indentation for Portuguese control flow keywords
 
+## Galeria
+
+![Sintaxe Básica](assets/pitao1.png)
+![Controle de Fluxo](assets/pitao2.png)
+![Classes e Funções](assets/pitao3.png)
+
 ## Portuguese Keywords
 
 | Português | Python | | Português | Python |
