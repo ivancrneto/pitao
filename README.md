@@ -18,6 +18,12 @@ cd pitao
 uv sync
 ```
 
+## Galeria
+
+![Sintaxe Básica](vscode-pitao/assets/pitao1.png)
+![Controle de Fluxo](vscode-pitao/assets/pitao2.png)
+![Classes e Funções](vscode-pitao/assets/pitao3.png)
+
 ## Exemplo de Código
 
 Pitão suporta arquivos com extensão `.pt` ou `.pit`:
