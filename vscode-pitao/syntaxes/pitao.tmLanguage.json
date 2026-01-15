@@ -1,0 +1,288 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Pitão",
+    "scopeName": "source.pitao",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#keywords-control"
+        },
+        {
+            "include": "#keywords-operator"
+        },
+        {
+            "include": "#keywords-other"
+        },
+        {
+            "include": "#function-definition"
+        },
+        {
+            "include": "#class-definition"
+        },
+        {
+            "include": "#function-call"
+        },
+        {
+            "include": "#builtins"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.number-sign.pitao",
+                    "match": "#.*$"
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.triple.pitao",
+                    "begin": "(\"\"\"|''')",
+                    "end": "\\1",
+                    "patterns": [
+                        {
+                            "include": "#string-escapes"
+                        },
+                        {
+                            "include": "#string-interpolation"
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.double.pitao",
+                    "begin": "f\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "include": "#string-escapes"
+                        },
+                        {
+                            "include": "#string-interpolation"
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.single.pitao",
+                    "begin": "f'",
+                    "end": "'",
+                    "patterns": [
+                        {
+                            "include": "#string-escapes"
+                        },
+                        {
+                            "include": "#string-interpolation"
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.double.pitao",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "include": "#string-escapes"
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.single.pitao",
+                    "begin": "'",
+                    "end": "'",
+                    "patterns": [
+                        {
+                            "include": "#string-escapes"
+                        }
+                    ]
+                }
+            ]
+        },
+        "string-escapes": {
+            "patterns": [
+                {
+                    "name": "constant.character.escape.pitao",
+                    "match": "\\\\(x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|N\\{[^}]+\\}|[\\\\\"'abfnrtv0])"
+                }
+            ]
+        },
+        "string-interpolation": {
+            "patterns": [
+                {
+                    "name": "meta.interpolation.pitao",
+                    "begin": "\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.interpolation.begin.pitao"
+                        }
+                    },
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.interpolation.end.pitao"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#constants"
+                        },
+                        {
+                            "include": "#keywords-operator"
+                        },
+                        {
+                            "include": "#function-call"
+                        }
+                    ]
+                }
+            ]
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.float.pitao",
+                    "match": "\\b\\d+\\.\\d+([eE][+-]?\\d+)?\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.hexadecimal.pitao",
+                    "match": "\\b0[xX][0-9a-fA-F_]+\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.binary.pitao",
+                    "match": "\\b0[bB][01_]+\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.octal.pitao",
+                    "match": "\\b0[oO][0-7_]+\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.pitao",
+                    "match": "\\b\\d+\\b"
+                }
+            ]
+        },
+        "constants": {
+            "patterns": [
+                {
+                    "name": "constant.language.pitao",
+                    "match": "\\b(Verdadeiro|Falso|Nulo|True|False|None)\\b"
+                }
+            ]
+        },
+        "keywords-control": {
+            "patterns": [
+                {
+                    "name": "keyword.control.conditional.pitao",
+                    "match": "\\b(se|senaose|senao|if|elif|else)\\b"
+                },
+                {
+                    "name": "keyword.control.loop.pitao",
+                    "match": "\\b(para|enquanto|for|while)\\b"
+                },
+                {
+                    "name": "keyword.control.loop.pitao",
+                    "match": "\\b(em)\\b"
+                },
+                {
+                    "name": "keyword.control.flow.pitao",
+                    "match": "\\b(quebre|continue|passe|retorne|produza|break|pass|return|yield)\\b"
+                },
+                {
+                    "name": "keyword.control.exception.pitao",
+                    "match": "\\b(tente|exceto|finalmente|levante|try|except|finally|raise)\\b"
+                },
+                {
+                    "name": "keyword.control.import.pitao",
+                    "match": "\\b(importe|de|como|import|from|as)\\b"
+                },
+                {
+                    "name": "keyword.control.async.pitao",
+                    "match": "\\b(assincrono|aguarde|async|await)\\b"
+                }
+            ]
+        },
+        "keywords-operator": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.comparison.pitao",
+                    "match": "\\b(eh|in|is)\\b"
+                },
+                {
+                    "name": "keyword.operator.logical.pitao",
+                    "match": "\\b(e|ou|nao|and|or|not)\\b"
+                }
+            ]
+        },
+        "keywords-other": {
+            "patterns": [
+                {
+                    "name": "keyword.other.pitao",
+                    "match": "\\b(afirme|del|global|naolocal|com|lambda|assert|nonlocal|with)\\b"
+                }
+            ]
+        },
+        "function-definition": {
+            "patterns": [
+                {
+                    "name": "meta.function.pitao",
+                    "match": "\\b(def|assincrono\\s+def|async\\s+def)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.other.def.pitao"
+                        },
+                        "2": {
+                            "name": "entity.name.function.pitao"
+                        }
+                    }
+                }
+            ]
+        },
+        "class-definition": {
+            "patterns": [
+                {
+                    "name": "meta.class.pitao",
+                    "match": "\\b(classe|class)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.other.class.pitao"
+                        },
+                        "2": {
+                            "name": "entity.name.class.pitao"
+                        }
+                    }
+                }
+            ]
+        },
+        "function-call": {
+            "patterns": [
+                {
+                    "name": "meta.function-call.pitao",
+                    "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(",
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.function.call.pitao"
+                        }
+                    }
+                }
+            ]
+        },
+        "builtins": {
+            "patterns": [
+                {
+                    "name": "support.function.builtin.pitao",
+                    "match": "\\b(print|len|range|str|int|float|list|dict|tuple|set|open|type|isinstance|hasattr|getattr|setattr|input|abs|all|any|bin|bool|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|enumerate|eval|exec|filter|format|frozenset|globals|hash|help|hex|id|iter|locals|map|max|memoryview|min|next|object|oct|ord|pow|property|repr|reversed|round|slice|sorted|staticmethod|sum|super|vars|zip|__import__)\\b"
+                }
+            ]
+        }
+    }
+}

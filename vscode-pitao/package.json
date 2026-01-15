@@ -1,0 +1,41 @@
+{
+  "name": "pitao-syntax",
+  "displayName": "Pitão",
+  "description": "Syntax highlighting for Pitão - Python with Portuguese keywords",
+  "version": "0.1.0",
+  "publisher": "ivancrneto",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivancrneto/pitao"
+  },
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "pitao",
+    "python",
+    "portuguese",
+    "syntax highlighting"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "pitao",
+        "aliases": ["Pitão", "pitao", "Pitao"],
+        "extensions": [".pt", ".pit"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "pitao",
+        "scopeName": "source.pitao",
+        "path": "./syntaxes/pitao.tmLanguage.json"
+      }
+    ]
+  }
+}
