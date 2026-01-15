@@ -1,14 +1,14 @@
-# Pitão - VS Code Extension
+# Pitão - Extensão VS Code
 
-Syntax highlighting for **Pitão** - Python with Portuguese keywords.
+Realce de sintaxe para **Pitão** - Python com palavras-chave em Português.
 
-## Features
+## Funcionalidades
 
-- Syntax highlighting for `.pt` and `.pit` files
-- Highlights all Portuguese Python keywords (see table below)
-- Comment toggling with `Ctrl+/` / `Cmd+/`
-- Auto-closing pairs for brackets and strings
-- Smart indentation for Portuguese control flow keywords
+- Realce de sintaxe para arquivos `.pt` e `.pit`
+- Destaca todas as palavras-chave do Python em Português (veja tabela abaixo)
+- Alternar comentários com `Ctrl+/` / `Cmd+/`
+- Fechamento automático de parênteses e strings
+- Indentação inteligente para palavras-chave de controle de fluxo
 
 ## Galeria
 
@@ -16,7 +16,7 @@ Syntax highlighting for **Pitão** - Python with Portuguese keywords.
 ![Controle de Fluxo](assets/pitao2.png)
 ![Classes e Funções](assets/pitao3.png)
 
-## Portuguese Keywords
+## Palavras-chave
 
 | Português | Python | | Português | Python |
 |-----------|--------|---|-----------|--------|
@@ -38,45 +38,7 @@ Syntax highlighting for **Pitão** - Python with Portuguese keywords.
 | `de` | `from` | | `como` | `as` |
 | `global` | `global` | | `naolocal` | `nonlocal` |
 
-## Installation
-
-### From Source
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ivancrneto/pitao.git
-   cd pitao/vscode-pitao
-   ```
-
-2. Copy to VS Code extensions folder:
-   ```bash
-   # macOS/Linux
-   cp -r . ~/.vscode/extensions/pitao-syntax
-
-   # Windows
-   xcopy /E /I . %USERPROFILE%\.vscode\extensions\pitao-syntax
-   ```
-
-3. Restart VS Code
-
-### Development
-
-To test the extension during development:
-
-```bash
-cd /path/to/pitao/vscode-pitao
-code --extensionDevelopmentPath=.
-```
-
-This opens a new VS Code window with the extension loaded.
-
-## License
-
-MIT
-
----
-
-## Instalação (Português)
+## Instalação
 
 ### Instalando a partir do código fonte
 
@@ -142,3 +104,55 @@ code --extensionDevelopmentPath=.
 ```
 
 Isso abre uma nova janela do editor com a extensão carregada.
+
+## Licença
+
+MIT
+
+---
+
+## English Version
+
+# Pitão - VS Code Extension
+
+Syntax highlighting for **Pitão** - Python with Portuguese keywords.
+
+## Features
+
+- Syntax highlighting for `.pt` and `.pit` files
+- Highlights all Portuguese Python keywords
+- Comment toggling with `Ctrl+/` / `Cmd+/`
+- Auto-closing pairs for brackets and strings
+- Smart indentation for Portuguese control flow keywords
+
+## Installation
+
+### From Source
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ivancrneto/pitao.git
+   cd pitao/vscode-pitao
+   ```
+
+2. Copy to VS Code extensions folder:
+   ```bash
+   # macOS/Linux
+   cp -r . ~/.vscode/extensions/pitao-syntax
+
+   # Windows
+   xcopy /E /I . %USERPROFILE%\.vscode\extensions\pitao-syntax
+   ```
+
+3. Restart VS Code
+
+### Development
+
+To test the extension during development:
+
+```bash
+cd /path/to/pitao/vscode-pitao
+code --extensionDevelopmentPath=.
+```
+
+This opens a new VS Code window with the extension loaded.
