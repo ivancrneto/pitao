@@ -166,6 +166,46 @@ PORTUGUESE_TO_PYTHON = {
 # Reverse mapping for py2pt
 PYTHON_TO_PORTUGUESE = {v: k for k, v in PORTUGUESE_TO_PYTHON.items()}
 
+# Method name mappings for object methods (str., list., dict., etc.)
+PORTUGUESE_METHODS = {
+    # String methods
+    "maiuscula": "upper",
+    "minuscula": "lower",
+    "capitalizar": "capitalize",
+    "titulo": "title",
+    "removerespacos": "strip",
+    "dividir": "split",
+    "juntar": "join",
+    "substituir": "replace",
+    "encontrar": "find",
+    "comecacom": "startswith",
+    "terminacom": "endswith",
+    "ehdigito": "isdigit",
+    "ehalfa": "isalpha",
+    "ehalfanum": "isalnum",
+    # List methods
+    "adicionar": "append",
+    "estender": "extend",
+    "inserir": "insert",
+    "remover": "remove",
+    "retirar": "pop",
+    "limpar": "clear",
+    "indice": "index",
+    "contar": "count",
+    "ordenar": "sort",
+    "inverter": "reverse",
+    "copiar": "copy",
+    # Dict methods
+    "chaves": "keys",
+    "valores": "values",
+    "itens": "items",
+    "obter": "get",
+    "atualizar": "update",
+    "definirpadrao": "setdefault",
+}
+
+PYTHON_TO_PORTUGUESE_METHODS = {v: k for k, v in PORTUGUESE_METHODS.items()}
+
 
 def _is_pitao_file(word):
     """
@@ -248,25 +288,24 @@ def translate_keywords(content, reverse=False):
         str: Translated source code
     """
     mapping = PYTHON_TO_PORTUGUESE if reverse else PORTUGUESE_TO_PYTHON
+    method_mapping = PYTHON_TO_PORTUGUESE_METHODS if reverse else PORTUGUESE_METHODS
 
-    # Pattern to match strings and comments
-    # This captures: triple-quoted strings, single/double quoted strings, and comments
     string_pattern = r"(\"\"\"[\s\S]*?\"\"\"|\'\'\'[\s\S]*?\'\'\'|\"(?:[^\"\\]|\\.)*\"|\'(?:[^\'\\]|\\.)*\'|#.*$)"
 
-    # Split content preserving strings and comments
     parts = re.split(string_pattern, content, flags=re.MULTILINE)
 
     result_parts = []
     for i, part in enumerate(parts):
-        # Odd indices are the matched strings/comments, don't translate them
         if i % 2 == 1:
             result_parts.append(part)
         else:
-            # Translate keywords in code
             translated_part = part
             for source, target in mapping.items():
                 pattern = r"\b" + re.escape(source) + r"\b"
                 translated_part = re.sub(pattern, target, translated_part)
+            for source, target in method_mapping.items():
+                pattern = r"\." + re.escape(source) + r"\b"
+                translated_part = re.sub(pattern, "." + target, translated_part)
             result_parts.append(translated_part)
 
     return "".join(result_parts)
