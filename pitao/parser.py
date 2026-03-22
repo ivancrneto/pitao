@@ -66,6 +66,32 @@ PORTUGUESE_TO_PYTHON = {
     "filtrar": "filter",
     "todos": "all",
     "algum": "any",
+    # Builtins - Inspection and Type
+    "tipo": "type",
+    "ehinstancia": "isinstance",
+    "ehsubclasse": "issubclass",
+    "tematributo": "hasattr",
+    "obteratributo": "getattr",
+    "defatributo": "setattr",
+    "delatributo": "delattr",
+    "diretorio": "dir",
+    "variaveis": "vars",
+    "identificador": "id",
+    # Builtins - Math
+    "absoluto": "abs",
+    "arredondar": "round",
+    "potencia": "pow",
+    # Builtins - Representation
+    "representacao": "repr",
+    "formatar": "format",
+    "binario": "bin",
+    "hexadecimal": "hex",
+    "octal": "oct",
+    "caractere": "chr",
+    "codigo": "ord",
+    # Builtins - Iterators
+    "iterador": "iter",
+    "proximo": "next",
     # Other keywords
     "como": "as",
     "afirme": "assert",
