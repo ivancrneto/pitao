@@ -92,6 +92,25 @@ PORTUGUESE_TO_PYTHON = {
     # Builtins - Iterators
     "iterador": "iter",
     "proximo": "next",
+    # Builtins - Advanced Programming
+    "avaliar": "eval",
+    "executar": "exec",
+    "compilar": "compile",
+    "globais": "globals",
+    "locais": "locals",
+    "chamavel": "callable",
+    # Builtins - OOP
+    "metodoclasse": "classmethod",
+    "metodoestatico": "staticmethod",
+    "propriedade": "property",
+    "objeto": "object",
+    # Builtins - Bytes and Memory
+    "vetor_bytes": "bytearray",
+    "visao_memoria": "memoryview",
+    "conjunto_congelado": "frozenset",
+    # Builtins - Utilities
+    "hash": "hash",
+    "ajuda": "help",
     # Dunder attributes
     "__nome__": "__name__",
     "__principal__": "__main__",
