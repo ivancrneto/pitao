@@ -51,6 +51,21 @@ PORTUGUESE_TO_PYTHON = {
     "dicionario": "dict",
     "conjunto": "set",
     "tupla": "tuple",
+    # Builtins - Sequence functions
+    "tamanho": "len",
+    "intervalo": "range",
+    "enumerar": "enumerate",
+    "juntar": "zip",
+    "ordenado": "sorted",
+    "invertido": "reversed",
+    "soma": "sum",
+    "max": "max",
+    "min": "min",
+    # Builtins - Iteration functions
+    "mapear": "map",
+    "filtrar": "filter",
+    "todos": "all",
+    "algum": "any",
     # Other keywords
     "como": "as",
     "afirme": "assert",
