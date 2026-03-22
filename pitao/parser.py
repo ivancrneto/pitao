@@ -38,8 +38,115 @@ PORTUGUESE_TO_PYTHON = {
     # Async
     "assincrono": "async",
     "aguarde": "await",
-    # Builtins
+    # Builtins - I/O
     "imprimir": "print",
+    "entrada": "input",
+    "abrir": "open",
+    # Builtins - Type conversion
+    "inteiro": "int",
+    "flutuante": "float",
+    "texto": "str",
+    "booleano": "bool",
+    "lista": "list",
+    "dicionario": "dict",
+    "conjunto": "set",
+    "tupla": "tuple",
+    # Builtins - Sequence functions
+    "tamanho": "len",
+    "intervalo": "range",
+    "enumerar": "enumerate",
+    "juntar": "zip",
+    "ordenado": "sorted",
+    "invertido": "reversed",
+    "soma": "sum",
+    # Builtins - Iteration functions
+    "mapear": "map",
+    "filtrar": "filter",
+    "todos": "all",
+    "algum": "any",
+    # Builtins - Inspection and Type
+    "tipo": "type",
+    "ehinstancia": "isinstance",
+    "ehsubclasse": "issubclass",
+    "tematributo": "hasattr",
+    "obteratributo": "getattr",
+    "defatributo": "setattr",
+    "delatributo": "delattr",
+    "diretorio": "dir",
+    "variaveis": "vars",
+    "identificador": "id",
+    # Builtins - Math
+    "absoluto": "abs",
+    "arredondar": "round",
+    "potencia": "pow",
+    # Builtins - Representation
+    "representacao": "repr",
+    "formatar": "format",
+    "binario": "bin",
+    "hexadecimal": "hex",
+    "octal": "oct",
+    "caractere": "chr",
+    "codigo": "ord",
+    # Builtins - Iterators
+    "iterador": "iter",
+    "proximo": "next",
+    # Builtins - Advanced
+    "avaliar": "eval",
+    "executar": "exec",
+    "compilar": "compile",
+    "globais": "globals",
+    "locais": "locals",
+    "chamavel": "callable",
+    # Builtins - OOP
+    "metodoclasse": "classmethod",
+    "metodoestatico": "staticmethod",
+    "propriedade": "property",
+    "objeto": "object",
+    # Builtins - Bytes and Memory
+    "vetor_bytes": "bytearray",
+    "visao_memoria": "memoryview",
+    "conjunto_congelado": "frozenset",
+    # Builtins - Utilities
+    "hash": "hash",
+    "ajuda": "help",
+    # Dunder methods
+    "__iniciar__": "__init__",
+    "__texto__": "__str__",
+    "__repr__": "__repr__",
+    "__tamanho__": "__len__",
+    "__adic__": "__add__",
+    "__sub__": "__sub__",
+    "__mul__": "__mul__",
+    "__div__": "__truediv__",
+    "__igual__": "__eq__",
+    "__menor__": "__lt__",
+    "__maior__": "__gt__",
+    "__obteritem__": "__getitem__",
+    "__defitem__": "__setitem__",
+    "__delitem__": "__delitem__",
+    "__iterador__": "__iter__",
+    "__proximo__": "__next__",
+    "__entrar__": "__enter__",
+    "__sair__": "__exit__",
+    "__chamar__": "__call__",
+    "__nome__": "__name__",
+    "__principal__": "__main__",
+    "__arquivo__": "__file__",
+    # Exception types
+    "Excecao": "Exception",
+    "ErroValor": "ValueError",
+    "ErroTipo": "TypeError",
+    "ErroChave": "KeyError",
+    "ErroIndice": "IndexError",
+    "ErroAtributo": "AttributeError",
+    "ErroNome": "NameError",
+    "ErroArquivoNaoEncontrado": "FileNotFoundError",
+    "ErroDivisaoPorZero": "ZeroDivisionError",
+    "ErroImportacao": "ImportError",
+    "ErroExecucao": "RuntimeError",
+    "NaoImplementado": "NotImplementedError",
+    "PararIteracao": "StopIteration",
+    "InterrupcaoTeclado": "KeyboardInterrupt",
     # Other keywords
     "como": "as",
     "afirme": "assert",
@@ -56,6 +163,46 @@ PORTUGUESE_TO_PYTHON = {
 
 # Reverse mapping for py2pt
 PYTHON_TO_PORTUGUESE = {v: k for k, v in PORTUGUESE_TO_PYTHON.items()}
+
+# Method name mappings for object methods (str., list., dict., etc.)
+PORTUGUESE_METHODS = {
+    # String methods
+    "maiuscula": "upper",
+    "minuscula": "lower",
+    "capitalizar": "capitalize",
+    "titulo": "title",
+    "removerespacos": "strip",
+    "dividir": "split",
+    "juntar": "join",
+    "substituir": "replace",
+    "encontrar": "find",
+    "comecacom": "startswith",
+    "terminacom": "endswith",
+    "ehdigito": "isdigit",
+    "ehalfa": "isalpha",
+    "ehalfanum": "isalnum",
+    # List methods
+    "adicionar": "append",
+    "estender": "extend",
+    "inserir": "insert",
+    "remover": "remove",
+    "retirar": "pop",
+    "limpar": "clear",
+    "indice": "index",
+    "contar": "count",
+    "ordenar": "sort",
+    "inverter": "reverse",
+    "copiar": "copy",
+    # Dict methods
+    "chaves": "keys",
+    "valores": "values",
+    "itens": "items",
+    "obter": "get",
+    "atualizar": "update",
+    "definirpadrao": "setdefault",
+}
+
+PYTHON_TO_PORTUGUESE_METHODS = {v: k for k, v in PORTUGUESE_METHODS.items()}
 
 
 def _is_pitao_file(word):
@@ -139,25 +286,24 @@ def translate_keywords(content, reverse=False):
         str: Translated source code
     """
     mapping = PYTHON_TO_PORTUGUESE if reverse else PORTUGUESE_TO_PYTHON
+    method_mapping = PYTHON_TO_PORTUGUESE_METHODS if reverse else PORTUGUESE_METHODS
 
-    # Pattern to match strings and comments
-    # This captures: triple-quoted strings, single/double quoted strings, and comments
     string_pattern = r"(\"\"\"[\s\S]*?\"\"\"|\'\'\'[\s\S]*?\'\'\'|\"(?:[^\"\\]|\\.)*\"|\'(?:[^\'\\]|\\.)*\'|#.*$)"
 
-    # Split content preserving strings and comments
     parts = re.split(string_pattern, content, flags=re.MULTILINE)
 
     result_parts = []
     for i, part in enumerate(parts):
-        # Odd indices are the matched strings/comments, don't translate them
         if i % 2 == 1:
             result_parts.append(part)
         else:
-            # Translate keywords in code
             translated_part = part
             for source, target in mapping.items():
                 pattern = r"\b" + re.escape(source) + r"\b"
                 translated_part = re.sub(pattern, target, translated_part)
+            for source, target in method_mapping.items():
+                pattern = r"\." + re.escape(source) + r"\b"
+                translated_part = re.sub(pattern, "." + target, translated_part)
             result_parts.append(translated_part)
 
     return "".join(result_parts)
