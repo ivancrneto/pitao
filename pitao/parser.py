@@ -149,6 +149,44 @@ PORTUGUESE_TO_PYTHON = {
     "NaoImplementado": "NotImplementedError",
     "PararIteracao": "StopIteration",
     "InterrupcaoTeclado": "KeyboardInterrupt",
+    # Stdlib - os
+    "listardir": "listdir",
+    "criardir": "mkdir",
+    "removedir": "rmdir",
+    "existir": "exists",
+    "caminhounir": "join",
+    # Stdlib - sys
+    "argumentos": "argv",
+    "caminho": "path",
+    "sair": "exit",
+    # Stdlib - datetime
+    "agora": "now",
+    "hoje": "today",
+    "data": "date",
+    "hora": "time",
+    # Stdlib - math
+    "raizquadrada": "sqrt",
+    "pi": "pi",
+    "teto": "ceil",
+    "piso": "floor",
+    # Stdlib - random
+    "aleatorio": "random",
+    "escolher": "choice",
+    "intaleatorio": "randint",
+    # Stdlib - json
+    "carregartexto": "loads",
+    "despejartexto": "dumps",
+    "carregar": "load",
+    "despejar": "dump",
+    # Stdlib - re
+    "combinar": "match",
+    "buscar": "search",
+    "encontrartodos": "findall",
+    "sub": "sub",
+    # Stdlib - path methods (on caminho/os.path object)
+    "existe": "exists",
+    "ehdir": "isdir",
+    "eharq": "isfile",
     # Other keywords
     "como": "as",
     "afirme": "assert",
