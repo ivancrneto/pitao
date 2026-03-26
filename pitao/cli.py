@@ -37,12 +37,15 @@ def main():
     argparser.add_argument(
         "-k", "--keep", help="mantém arquivos Python gerados", action="store_true"
     )
+    
+    # Replaces --python2 with --python (more flexible); defaults to sys.executable.
     argparser.add_argument(
-        "-2",
-        "--python2",
-        help="usa python2 ao invés de python3 (padrão)",
-        action="store_true",
+        "--python",
+        type=str,
+        default=sys.executable,
+        help="interpretador Python a ser usado (por padrão, usa o interpretador atual - sys.executable).",
     )
+
     argparser.add_argument(
         "-o",
         "--output",
@@ -148,7 +151,7 @@ def main():
         return
 
     # Run file
-    python_command = "python2" if cmd_args.python2 else "python3"
+    python_command = cmd_args.python
 
     filename = os.path.basename(cmd_args.input[0])
     output_file = os.path.join(

@@ -2,23 +2,81 @@
 
 Este documento descreve as melhorias planejadas para o Pitão, focando na expansão da tradução de elementos Python para Português.
 
-## ✅ Já Implementado
+---
 
+## ✅ Já Implementado 
 ### Keywords (53 palavras-chave)
 Todas as palavras-chave principais do Python já estão traduzidas:
 
-| Português | Python | Categoria |
-|-----------|--------|-----------|
-| `Falso`, `Verdadeiro`, `Nulo` | `False`, `True`, `None` | Valores |
-| `e`, `ou`, `nao` | `and`, `or`, `not` | Operadores Lógicos |
-| `se`, `senaose`, `senao` | `if`, `elif`, `else` | Controle de Fluxo |
-| `para`, `enquanto`, `quebre`, `continue` | `for`, `while`, `break`, `continue` | Loops |
-| `def`, `classe`, `retorne`, `produza` | `def`, `class`, `return`, `yield` | Definições |
-| `tente`, `exceto`, `finalmente`, `levante` | `try`, `except`, `finally`, `raise` | Exceções |
-| `assincrono`, `aguarde` | `async`, `await` | Async |
-| `importe`, `de`, `como` | `import`, `from`, `as` | Imports |
-| `em`, `eh`, `com` | `in`, `is`, `with` | Outros |
-| `afirme`, `del`, `global`, `naolocal`, `lambda`, `passe` | `assert`, `del`, `global`, `nonlocal`, `lambda`, `pass` | Outros |
+| Português    | Python     | Categoria               |
+| ------------ | ---------- | ----------------------- |
+| `Falso`      | `False`    | Valores                 |
+| `Verdadeiro` | `True`     | Valores                 |
+| `Nulo`       | `None`     | Valores                 |
+| `e`          | `and`      | Operadores Lógicos      |
+| `ou`         | `or`       | Operadores Lógicos      |
+| `nao`        | `not`      | Operadores Lógicos      |
+| `se`         | `if`       | Controle de Fluxo       |
+| `senaose`    | `elif`     | Controle de Fluxo       |
+| `senao`      | `else`     | Controle de Fluxo       |
+| `para`       | `for`      | Loops                   |
+| `enquanto`   | `while`    | Loops                   |
+| `quebre`     | `break`    | Loops                   |
+| `continue`   | `continue` | Loops                   |
+| `def`        | `def`      | Definições              |
+| `classe`     | `class`    | Definições              |
+| `retorne`    | `return`   | Definições              |
+| `produza`    | `yield`    | Definições              |
+| `tente`      | `try`      | Exceções                |
+| `exceto`     | `except`   | Exceções                |
+| `finalmente` | `finally`  | Exceções                |
+| `levante`    | `raise`    | Exceções                |
+| `assincrono` | `async`    | Assíncrono              |
+| `aguarde`    | `await`    | Assíncrono              |
+| `importe`    | `import`   | Imports                 |
+| `de`         | `from`     | Imports                 |
+| `como`       | `as`       | Imports                 |
+| `em`         | `in`       | Outros                  |
+| `eh`         | `is`       | Outros                  |
+| `com`        | `with`     | Outros                  |
+| `afirme`     | `assert`   | Outros                  |
+| `del`        | `del`      | Outros                  |
+| `global`     | `global`   | Outros                  |
+| `naolocal`   | `nonlocal` | Outros                  |
+| `lambda`     | `lambda`   | Outros                  |
+| `passe`      | `pass`     | Outros                  |
+
+
+
+
+
+### Funções Built-in Implementadas
+As funções principais do python já traduzidas:
+
+| Português      | Python        | Categoria         |
+| -------------- | ------------- | ----------------- |
+| `imprimir()`   | `print()`     | I/O               |
+| `entrada()`    | `input()`     | I/O               |
+| `abrir()`      | `open()`      | I/O               |
+| `inteiro()`    | `int()`       | Tipos / Conversão |
+| `flutuante()`  | `float()`     | Tipos / Conversão |
+| `texto()`      | `str()`       | Tipos / Conversão |
+| `booleano()`   | `bool()`      | Tipos / Conversão |
+| `lista()`      | `list()`      | Tipos / Conversão |
+| `dicionario()` | `dict()`      | Tipos / Conversão |
+| `conjunto()`   | `set()`       | Tipos / Conversão |
+| `tupla()`      | `tuple()`     | Tipos / Conversão |
+| `tamanho()`    | `len()`       | Sequência         |
+| `intervalo()`  | `range()`     | Sequência         |
+| `enumerar()`   | `enumerate()` | Sequência         |
+| `juntar()`     | `zip()`       | Sequência         |
+| `ordenar()`    | `sorted()`    | Sequência         |
+| `inverter()`   | `reversed()`  | Sequência         |
+| `somar()`      | `sum()`       | Sequência         |
+| `maior_de()`   | `max()`       | Sequência         |
+| `menor_de()`   | `min()`       | Sequência         |
+
+---
 
 ## 🎯 Próximas Fases
 
@@ -27,30 +85,30 @@ Todas as palavras-chave principais do Python já estão traduzidas:
 Traduzir as funções mais comumente usadas:
 
 #### 1.1 I/O e Interação
-- [ ] `print()` → `imprimir()`
-- [ ] `input()` → `entrada()`
-- [ ] `open()` → `abrir()`
+- [x] `print()` → `imprimir()`
+- [x] `input()` → `entrada()`
+- [x] `open()` → `abrir()`
 
 #### 1.2 Conversão de Tipos
-- [ ] `int()` → `inteiro()`
-- [ ] `float()` → `flutuante()`
-- [ ] `str()` → `texto()`
-- [ ] `bool()` → `booleano()`
-- [ ] `list()` → `lista()`
-- [ ] `dict()` → `dicionario()`
-- [ ] `set()` → `conjunto()`
-- [ ] `tuple()` → `tupla()`
+- [x] `int()` → `inteiro()`
+- [x] `float()` → `flutuante()`
+- [x] `str()` → `texto()`
+- [x] `bool()` → `booleano()`
+- [x] `list()` → `lista()`
+- [x] `dict()` → `dicionario()`
+- [x] `set()` → `conjunto()`
+- [x] `tuple()` → `tupla()`
 
 #### 1.3 Funções de Sequência
-- [ ] `len()` → `tamanho()`
-- [ ] `range()` → `intervalo()`
-- [ ] `enumerate()` → `enumerar()`
-- [ ] `zip()` → `juntar()`
-- [ ] `sorted()` → `ordenado()`
-- [ ] `reversed()` → `invertido()`
-- [ ] `sum()` → `soma()`
-- [ ] `max()` → `max()`
-- [ ] `min()` → `min()`
+- [x] `len()` → `tamanho()`
+- [x] `range()` → `intervalo()`
+- [x] `enumerate()` → `enumerar()`
+- [x] `zip()` → `juntar()`
+- [x] `sorted()` → `ordenar()`
+- [x] `reversed()` → `inverter()`
+- [x] `sum()` → `somar()`
+- [x] `max()` → `mmaior_de()`
+- [x] `min()` → `menor_de()`
 
 #### 1.4 Funções de Iteração
 - [ ] `map()` → `mapear()`

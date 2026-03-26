@@ -51,6 +51,21 @@ PORTUGUESE_TO_PYTHON = {
     "dicionario": "dict",
     "conjunto": "set",
     "tupla": "tuple",
+    # Built-in functions: sequence functions (ex: len, range...)
+    "tamanho" : "len",
+    "intervalo" : "range",
+    "enumerar" : "enumerate",
+    "juntar"   : "zip",
+    "ordenar"  : "sorted",
+    "inverter" : "reversed",
+    "somar"    : "sum",
+
+    # OBS !!!
+    "maior_de" : "max",   # sugiro maior_de ao invés de só max ou máximo
+    "menor_de" : "min",   # sugiro menor_de ao invés de só min ou mínimo
+    # porque essas funções geralmente são usadas como max(10, 100, 150, -2, 200)...
+    # ou, Pitão: maior_de(10, 100, 150, -2, 200)
+    
     # Other keywords
     "como": "as",
     "afirme": "assert",
