@@ -37,7 +37,7 @@ def main():
     argparser.add_argument(
         "-k", "--keep", help="mantém arquivos Python gerados", action="store_true"
     )
-    
+
     # Replaces --python2 with --python (more flexible); defaults to sys.executable.
     argparser.add_argument(
         "--python",
