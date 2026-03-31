@@ -14,7 +14,6 @@ Realce de sintaxe para **Pitão** - Python com palavras-chave em Português.
 
 ![Sintaxe Básica](assets/pitao1.png)
 ![Controle de Fluxo](assets/pitao2.png)
-![Classes e Funções](assets/pitao3.png)
 
 ## Palavras-chave
 
