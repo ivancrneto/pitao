@@ -52,20 +52,18 @@ PORTUGUESE_TO_PYTHON = {
     "conjunto": "set",
     "tupla": "tuple",
     # Built-in functions: sequence functions (ex: len, range...)
-    "tamanho" : "len",
-    "intervalo" : "range",
-    "enumerar" : "enumerate",
-    "juntar"   : "zip",
-    "ordenar"  : "sorted",
-    "inverter" : "reversed",
-    "somar"    : "sum",
-
-    # OBS !!!
-    "maior_de" : "max",   # sugiro maior_de ao invés de só max ou máximo
-    "menor_de" : "min",   # sugiro menor_de ao invés de só min ou mínimo
-    # porque essas funções geralmente são usadas como max(10, 100, 150, -2, 200)...
-    # ou, Pitão: maior_de(10, 100, 150, -2, 200)
-    
+    "tamanho": "len",
+    "intervalo": "range",
+    "enumerar": "enumerate",
+    "juntar": "zip",
+    "ordenar": "sorted",
+    "inverter": "reversed",
+    "somar": "sum",
+    "maior_de": "max",
+    "menor_de": "min",
+    # Dunder attributes
+    "__nome__": "__name__",
+    "__principal__": "__main__",
     # Other keywords
     "como": "as",
     "afirme": "assert",
@@ -166,6 +164,15 @@ def translate_keywords(content, reverse=False):
     """
     mapping = PYTHON_TO_PORTUGUESE if reverse else PORTUGUESE_TO_PYTHON
 
+    # Dunder tokens that must also be translated inside string literals
+    # (e.g. the "__main__" string in `if __name__ == "__main__":`)
+    DUNDER_MAPPINGS = {
+        "__nome__": "__name__",
+        "__principal__": "__main__",
+    }
+    DUNDER_MAPPINGS_REVERSE = {v: k for k, v in DUNDER_MAPPINGS.items()}
+    dunder_map = DUNDER_MAPPINGS_REVERSE if reverse else DUNDER_MAPPINGS
+
     # Pattern to match strings and comments
     # This captures: triple-quoted strings, single/double quoted strings, and comments
     string_pattern = r"(\"\"\"[\s\S]*?\"\"\"|\'\'\'[\s\S]*?\'\'\'|\"(?:[^\"\\]|\\.)*\"|\'(?:[^\'\\]|\\.)*\'|#.*$)"
@@ -175,9 +182,14 @@ def translate_keywords(content, reverse=False):
 
     result_parts = []
     for i, part in enumerate(parts):
-        # Odd indices are the matched strings/comments, don't translate them
+        # Odd indices are the matched strings/comments
         if i % 2 == 1:
-            result_parts.append(part)
+            # Only translate dunder tokens inside strings (not comments)
+            translated_part = part
+            if not part.startswith("#"):
+                for source, target in dunder_map.items():
+                    translated_part = translated_part.replace(source, target)
+            result_parts.append(translated_part)
         else:
             # Translate keywords in code
             translated_part = part

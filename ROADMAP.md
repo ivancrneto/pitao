@@ -207,8 +207,8 @@ Traduzir os métodos mágicos mais comuns:
 - [ ] `__enter__` → `__entrar__`
 - [ ] `__exit__` → `__sair__`
 - [ ] `__call__` → `__chamar__`
-- [ ] `__name__` → `__nome__`
-- [ ] `__main__` → `__principal__`
+- [x] `__name__` → `__nome__`
+- [x] `__main__` → `__principal__`
 - [ ] `__file__` → `__arquivo__`
 - [ ] `__doc__` → `__doc__`
 

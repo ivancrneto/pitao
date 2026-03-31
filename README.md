@@ -30,7 +30,6 @@ uv sync
 
 ![Sintaxe Básica](https://raw.githubusercontent.com/ivancrneto/pitao/main/vscode-pitao/assets/pitao1.png)
 ![Controle de Fluxo](https://raw.githubusercontent.com/ivancrneto/pitao/main/vscode-pitao/assets/pitao2.png)
-![Classes e Funções](https://raw.githubusercontent.com/ivancrneto/pitao/main/vscode-pitao/assets/pitao3.png)
 
 ---
 

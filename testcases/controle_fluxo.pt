@@ -20,31 +20,31 @@ def contador(limite):
     """Conta até o limite."""
     i = 0
     enquanto i < limite:
-        print(f"Contando: {i}")
+        imprimir(f"Contando: {i}")
         i = i + 1
 
 def buscar_item(lista, alvo):
     """Busca um item em uma lista."""
     para item em lista:
         se item == alvo:
-            print(f"Encontrado: {item}")
+            imprimir(f"Encontrado: {item}")
             quebre
     senao:
-        print("Item não encontrado")
+        imprimir("Item não encontrado")
 
-se __name__ == "__main__":
-    print("=== Fibonacci ===")
-    para n em range(10):
-        print(f"fib({n}) = {fibonacci(n)}")
+se __nome__ == "__principal__":
+    imprimir("=== Fibonacci ===")
+    para n em intervalo(10):
+        imprimir(f"fib({n}) = {fibonacci(n)}")
     
-    print("\n=== Fatorial ===")
-    para n em range(1, 8):
-        print(f"{n}! = {fatorial(n)}")
+    imprimir("\n=== Fatorial ===")
+    para n em intervalo(1, 8):
+        imprimir(f"{n}! = {fatorial(n)}")
     
-    print("\n=== Contador ===")
+    imprimir("\n=== Contador ===")
     contador(5)
     
-    print("\n=== Busca ===")
+    imprimir("\n=== Busca ===")
     frutas = ["maçã", "banana", "laranja"]
     buscar_item(frutas, "banana")
     buscar_item(frutas, "uva")

@@ -2,16 +2,16 @@
 
 def ola_mundo():
     """Uma função simples que imprime uma saudação."""
-    print("Olá, Mundo!")
+    imprimir("Olá, Mundo!")
 
 def saudacao(nome):
     """Sauda uma pessoa pelo nome."""
     se nome:
-        print(f"Olá, {nome}!")
+        imprimir(f"Olá, {nome}!")
     senao:
-        print("Olá, estranho!")
+        imprimir("Olá, estranho!")
 
-se __name__ == "__main__":
+se __nome__ == "__principal__":
     ola_mundo()
     saudacao("Python")
     saudacao(Nulo)

@@ -110,3 +110,40 @@ def test_other_keywords():
     assert "global" in result
     assert "nonlocal" in result
     assert "lambda" in result
+
+
+def test_dunder_name_identifier():
+    """__nome__ as an identifier (outside strings) translates to __name__."""
+    result = translate_keywords("__nome__")
+    assert "__name__" in result
+    assert "__nome__" not in result
+
+
+def test_dunder_main_identifier():
+    """__principal__ as an identifier translates to __main__."""
+    result = translate_keywords("__principal__")
+    assert "__main__" in result
+    assert "__principal__" not in result
+
+
+def test_dunder_main_guard_full():
+    """The full idiomatic guard pattern translates correctly (identifier + string literal)."""
+    code = 'se __nome__ == "__principal__":'
+    result = translate_keywords(code)
+    assert result == 'if __name__ == "__main__":'
+
+
+def test_dunder_reverse_full():
+    """Reverse translation: the full guard converts from Python back to Pitão."""
+    code = 'if __name__ == "__main__":'
+    result = translate_keywords(code, reverse=True)
+    assert result == 'se __nome__ == "__principal__":'
+
+
+def test_dunder_comment_untouched():
+    """Dunder tokens inside comments are NOT translated."""
+    code = "# use __nome__ to check __principal__"
+    result = translate_keywords(code)
+    # Comments are preserved as-is
+    assert "__name__" not in result
+    assert "__main__" not in result

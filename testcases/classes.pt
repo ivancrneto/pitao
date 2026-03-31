@@ -10,19 +10,19 @@ classe Animal:
         passe
     
     def apresentar(self):
-        print(f"Eu sou {self.nome}")
+        imprimir(f"Eu sou {self.nome}")
 
 classe Cachorro(Animal):
     """Um cachorro que late."""
     
     def falar(self):
-        print(f"{self.nome} diz: Au au!")
+        imprimir(f"{self.nome} diz: Au au!")
 
 classe Gato(Animal):
     """Um gato que mia."""
     
     def falar(self):
-        print(f"{self.nome} diz: Miau!")
+        imprimir(f"{self.nome} diz: Miau!")
 
 classe Calculadora:
     """Uma calculadora simples."""
@@ -30,7 +30,7 @@ classe Calculadora:
     def __init__(self):
         self.resultado = 0
     
-    def somar(self, a, b):
+    def adicionar(self, a, b):
         self.resultado = a + b
         retorne self.resultado
     
@@ -48,8 +48,8 @@ classe Calculadora:
         self.resultado = a / b
         retorne self.resultado
 
-se __name__ == "__main__":
-    print("=== Animais ===")
+se __nome__ == "__principal__":
+    imprimir("=== Animais ===")
     rex = Cachorro("Rex")
     mimi = Gato("Mimi")
     
@@ -57,18 +57,18 @@ se __name__ == "__main__":
         animal.apresentar()
         animal.falar()
     
-    print("\n=== Calculadora ===")
+    imprimir("\n=== Calculadora ===")
     calc = Calculadora()
-    print(f"10 + 5 = {calc.somar(10, 5)}")
-    print(f"10 - 5 = {calc.subtrair(10, 5)}")
-    print(f"10 * 5 = {calc.multiplicar(10, 5)}")
-    print(f"10 / 5 = {calc.dividir(10, 5)}")
+    imprimir(f"10 + 5 = {calc.adicionar(10, 5)}")
+    imprimir(f"10 - 5 = {calc.subtrair(10, 5)}")
+    imprimir(f"10 * 5 = {calc.multiplicar(10, 5)}")
+    imprimir(f"10 / 5 = {calc.dividir(10, 5)}")
     
-    print("\n=== Tratamento de Exceção ===")
+    imprimir("\n=== Tratamento de Exceção ===")
     tente:
         calc.dividir(10, 0)
     exceto ValueError como erro:
-        print(f"Erro capturado: {erro}")
+        imprimir(f"Erro capturado: {erro}")
     finalmente:
-        print("Operação finalizada")
+        imprimir("Operação finalizada")
 
