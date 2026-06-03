@@ -61,6 +61,11 @@ PORTUGUESE_TO_PYTHON = {
     "somar": "sum",
     "maior_de": "max",
     "menor_de": "min",
+    # Built-in functions: iteration functions
+    "mapear": "map",
+    "filtrar": "filter",
+    "todos": "all",
+    "algum": "any",
     # Dunder attributes
     "__nome__": "__name__",
     "__principal__": "__main__",
