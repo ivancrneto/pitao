@@ -149,6 +149,44 @@ PORTUGUESE_TO_PYTHON = {
     "NaoImplementado": "NotImplementedError",
     "PararIteracao": "StopIteration",
     "InterrupcaoTeclado": "KeyboardInterrupt",
+    # Stdlib - os
+    "listardir": "listdir",
+    "criardir": "mkdir",
+    "removedir": "rmdir",
+    "existir": "exists",
+    "caminhounir": "join",
+    # Stdlib - sys
+    "argumentos": "argv",
+    "caminho": "path",
+    "sair": "exit",
+    # Stdlib - datetime
+    "agora": "now",
+    "hoje": "today",
+    "data": "date",
+    "hora": "time",
+    # Stdlib - math
+    "raizquadrada": "sqrt",
+    "pi": "pi",
+    "teto": "ceil",
+    "piso": "floor",
+    # Stdlib - random
+    "aleatorio": "random",
+    "escolher": "choice",
+    "intaleatorio": "randint",
+    # Stdlib - json
+    "carregartexto": "loads",
+    "despejartexto": "dumps",
+    "carregar": "load",
+    "despejar": "dump",
+    # Stdlib - re
+    "combinar": "match",
+    "buscar": "search",
+    "encontrartodos": "findall",
+    "sub": "sub",
+    # Stdlib - path methods (on caminho/os.path object)
+    "existe": "exists",
+    "ehdir": "isdir",
+    "eharq": "isfile",
     # Other keywords
     "como": "as",
     "afirme": "assert",
@@ -165,6 +203,48 @@ PORTUGUESE_TO_PYTHON = {
 
 # Reverse mapping for py2pt
 PYTHON_TO_PORTUGUESE = {v: k for k, v in PORTUGUESE_TO_PYTHON.items()}
+
+# Method name mappings for object methods (str., list., dict., etc.)
+PORTUGUESE_METHODS = {
+    # String methods
+    "maiuscula": "upper",
+    "minuscula": "lower",
+    "capitalizar": "capitalize",
+    "titulo": "title",
+    "removerespacos": "strip",
+    # Trailing "_" avoids shadowing user-defined methods with the same
+    # common Portuguese verb name (e.g. a class method `dividir`).
+    "dividir_": "split",
+    "juntar": "join",
+    "substituir": "replace",
+    "encontrar": "find",
+    "comecacom": "startswith",
+    "terminacom": "endswith",
+    "ehdigito": "isdigit",
+    "ehalfa": "isalpha",
+    "ehalfanum": "isalnum",
+    # List methods
+    "adicionar_": "append",
+    "estender": "extend",
+    "inserir": "insert",
+    "remover": "remove",
+    "retirar": "pop",
+    "limpar": "clear",
+    "indice": "index",
+    "contar": "count",
+    "ordenar": "sort",
+    "inverter": "reverse",
+    "copiar": "copy",
+    # Dict methods
+    "chaves": "keys",
+    "valores": "values",
+    "itens": "items",
+    "obter": "get",
+    "atualizar": "update",
+    "definirpadrao": "setdefault",
+}
+
+PYTHON_TO_PORTUGUESE_METHODS = {v: k for k, v in PORTUGUESE_METHODS.items()}
 
 
 def _is_pitao_file(word):
@@ -248,6 +328,7 @@ def translate_keywords(content, reverse=False):
         str: Translated source code
     """
     mapping = PYTHON_TO_PORTUGUESE if reverse else PORTUGUESE_TO_PYTHON
+    method_mapping = PYTHON_TO_PORTUGUESE_METHODS if reverse else PORTUGUESE_METHODS
 
     # Dunder tokens that must also be translated inside string literals
     # (e.g. the "__main__" string in `if __name__ == "__main__":`)
@@ -262,7 +343,6 @@ def translate_keywords(content, reverse=False):
     # This captures: triple-quoted strings, single/double quoted strings, and comments
     string_pattern = r"(\"\"\"[\s\S]*?\"\"\"|\'\'\'[\s\S]*?\'\'\'|\"(?:[^\"\\]|\\.)*\"|\'(?:[^\'\\]|\\.)*\'|#.*$)"
 
-    # Split content preserving strings and comments
     parts = re.split(string_pattern, content, flags=re.MULTILINE)
 
     result_parts = []
@@ -276,8 +356,13 @@ def translate_keywords(content, reverse=False):
                     translated_part = translated_part.replace(source, target)
             result_parts.append(translated_part)
         else:
-            # Translate keywords in code
             translated_part = part
+            # Translate dotted method calls first so that method names which
+            # collide with builtin keywords (e.g. ".ordenar" -> ".sort" vs
+            # "ordenar" -> "sorted") are resolved before the keyword pass.
+            for source, target in method_mapping.items():
+                pattern = r"\." + re.escape(source) + r"\b"
+                translated_part = re.sub(pattern, "." + target, translated_part)
             for source, target in mapping.items():
                 pattern = r"\b" + re.escape(source) + r"\b"
                 translated_part = re.sub(pattern, target, translated_part)
