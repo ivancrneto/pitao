@@ -207,11 +207,11 @@ pessoa.atualizar({"idade": 31})
 ```python
 # arquivos.pt
 # Escrever
-com abrir("teste.txt", "w") como arquivo:
+usando abrir("teste.txt", "w") como arquivo:
     arquivo.escrever("Olá, arquivo!")
 
 # Ler
-com abrir("teste.txt", "r") como arquivo:
+usando abrir("teste.txt", "r") como arquivo:
     conteudo = arquivo.ler()
     imprimir(conteudo)
 ```
@@ -316,12 +316,12 @@ dizer_oi()
 importe io
 
 # Arquivo
-com abrir("dados.txt", "w") como f:
+usando abrir("dados.txt", "w") como f:
     f.escrever("Dados salvos")
 
 # StringIO (exemplo)
 buffer = io.StringIO()
-com abrir("temp.txt", "w") como arquivo:
+usando abrir("temp.txt", "w") como arquivo:
     arquivo.escrever("texto")
 ```
 

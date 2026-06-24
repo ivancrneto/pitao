@@ -133,6 +133,27 @@ def test_dunder_main_guard_full():
     assert result == 'if __name__ == "__main__":'
 
 
+def test_with_keyword_usando():
+    """The preferred `usando` keyword maps to `with`."""
+    code = "usando abrir('dados.txt') como f:"
+    result = translate_keywords(code)
+    assert result == "with open('dados.txt') as f:"
+
+
+def test_with_keyword_com_alias():
+    """Legacy `com` keyword still maps to `with` for backward compatibility."""
+    code = "com abrir('dados.txt') como f:"
+    result = translate_keywords(code)
+    assert result == "with open('dados.txt') as f:"
+
+
+def test_with_keyword_reverse_uses_usando():
+    """Reverse translation emits the preferred `usando`, not the alias `com`."""
+    code = "with open('dados.txt') as f:"
+    result = translate_keywords(code, reverse=True)
+    assert result == "usando abrir('dados.txt') como f:"
+
+
 def test_dunder_reverse_full():
     """Reverse translation: the full guard converts from Python back to Pitão."""
     code = 'if __name__ == "__main__":'

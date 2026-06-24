@@ -44,7 +44,7 @@ pt2py arquivo.pt -o arquivo.py
 | `import` | `importe` | 导入 |
 | `from` | `de` | 导入 |
 | `as` | `como` | 导入 |
-| `with` | `com` | 上下文 |
+| `with` | `usando` | 上下文 |
 | `async` | `assincrono` | 异步 |
 | `await` | `aguarde` | 异步 |
 
@@ -420,7 +420,7 @@ importe math
 
 caminho = caminhounir("pasta", "arquivo.txt")
 se existir(caminho):
-    com abrir(caminho) como f:
+    usando abrir(caminho) como f:
         dados = carregar(f)
 
 raiz = raizquadrada(16)

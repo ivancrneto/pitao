@@ -133,7 +133,7 @@ py2pt -o output.pt script.py
 |-------|--------|-----------|
 | `em` | `in` | Pertence a |
 | `eh` | `is` | É idéntico a |
-| `com` | `with` | Context manager |
+| `usando` | `with` | Context manager (`com` é alias legado) |
 | `del` | `del` | Deleta |
 | `global` | `global` | Variável global |
 | `naolocal` | `nonlocal` | Variável nonlocal |

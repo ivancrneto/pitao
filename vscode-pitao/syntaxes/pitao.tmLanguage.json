@@ -227,7 +227,7 @@
             "patterns": [
                 {
                     "name": "keyword.other.pitao",
-                    "match": "\\b(afirme|del|global|naolocal|com|lambda|assert|nonlocal|with)\\b"
+                    "match": "\\b(afirme|del|global|naolocal|usando|com|lambda|assert|nonlocal|with)\\b"
                 }
             ]
         },
