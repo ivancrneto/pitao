@@ -1,0 +1,87 @@
+# Demonstração de uma API FastAPI escrita em Pitão.
+#
+# Este arquivo é o "teste grande": uma aplicação FastAPI não-trivial escrita
+# inteiramente com palavras reservadas em Português, traduzida para Python
+# pelo Pitão e executada de verdade (veja tests/test_fastapi_translation.py).
+#
+# REGRAS DE AUTORIA (para evitar colisões inerentes do tradutor baseado em
+# regex, documentadas em testcases/FASTAPI_AUDIT.md):
+#   * Use @app.obter para GET (".get" <-> ".obter" é mapeamento de método).
+#     POST/PUT/DELETE não estão no dicionário e passam direto.
+#   * NÃO use identificadores que colidem com o dicionário, como:
+#       data, hora, e, tipo/type, id, caminho/path, proximo/next, hash...
+#     Em vez disso: 'erro' para exceções, 'itens_db', 'horario', etc.
+#   * Builtins em Português: inteiro, texto, flutuante, dicionario, lista.
+
+de fastapi importe FastAPI, HTTPException, Query
+de pydantic importe BaseModel
+
+
+classe Item(BaseModel):
+    """Um item do catálogo."""
+    nome: texto
+    preco: flutuante
+    quantidade: inteiro = 0
+
+
+app = FastAPI()
+
+# Armazenamento em memória (chave inteira -> Item serializado).
+itens_db: dicionario = {}
+
+
+@app.obter("/")
+def raiz():
+    """Verificação de saúde da API."""
+    retorne {"status": "ok", "total": tamanho(itens_db)}
+
+
+@app.obter("/itens")
+def listar_itens(limite: inteiro = Query(10, ge=1, le=100)):
+    """Lista os itens cadastrados, limitando a quantidade retornada."""
+    valores = lista(itens_db.valores())
+    retorne {"itens": valores[:limite], "total": tamanho(valores)}
+
+
+@app.obter("/itens/{item_id}")
+def obter_item(item_id: inteiro):
+    """Retorna um item pelo seu identificador."""
+    se item_id nao em itens_db:
+        levante HTTPException(status_code=404, detail="Item não encontrado")
+    retorne itens_db[item_id]
+
+
+@app.post("/itens/{item_id}", status_code=201)
+def criar_item(item_id: inteiro, item: Item):
+    """Cria um novo item."""
+    se item_id em itens_db:
+        levante HTTPException(status_code=409, detail="Item já existe")
+    itens_db[item_id] = item.model_dump()
+    retorne {"item_id": item_id, "item": itens_db[item_id]}
+
+
+@app.put("/itens/{item_id}")
+def atualizar_item(item_id: inteiro, item: Item):
+    """Atualiza um item existente."""
+    se item_id nao em itens_db:
+        levante HTTPException(status_code=404, detail="Item não encontrado")
+    itens_db[item_id] = item.model_dump()
+    retorne {"item_id": item_id, "item": itens_db[item_id]}
+
+
+@app.delete("/itens/{item_id}")
+def remover_item(item_id: inteiro):
+    """Remove um item pelo seu identificador."""
+    se item_id nao em itens_db:
+        levante HTTPException(status_code=404, detail="Item não encontrado")
+    removido = itens_db.retirar(item_id)
+    retorne {"item_id": item_id, "removido": removido}
+
+
+se __nome__ == "__principal__":
+    # Execução direta apenas valida a importação e a construção do app;
+    # não inicia um servidor (mantém o CI rápido e sem portas abertas).
+    # (Builtins do Pitão não são traduzidos dentro de f-strings, por isso
+    # 'tamanho' é calculado fora da interpolação.)
+    total_rotas = tamanho(app.routes)
+    imprimir(f"App FastAPI construído com {total_rotas} rotas.")

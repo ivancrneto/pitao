@@ -183,10 +183,11 @@ PORTUGUESE_TO_PYTHON = {
     "buscar": "search",
     "encontrartodos": "findall",
     "sub": "sub",
-    # Stdlib - path methods (on caminho/os.path object)
-    "existe": "exists",
-    "ehdir": "isdir",
-    "eharq": "isfile",
+    # NOTE: the os.path predicates "existe"/"ehdir"/"eharq" used to live here,
+    # but they are always written as attribute access (caminho.existe(...)).
+    # The keyword pass now uses a (?<!\.) lookbehind to avoid corrupting
+    # attribute names, which would block them here, so they were moved to
+    # PORTUGUESE_METHODS (the dotted pass) where they semantically belong.
     # Other keywords
     "como": "as",
     "afirme": "assert",
@@ -246,6 +247,12 @@ PORTUGUESE_METHODS = {
     "obter": "get",
     "atualizar": "update",
     "definirpadrao": "setdefault",
+    # os.path predicates (accessed as caminho.existe(...), etc.). These belong
+    # in the dotted pass so the keyword pass's (?<!\.) lookbehind does not skip
+    # them. See the note in PORTUGUESE_TO_PYTHON above.
+    "existe": "exists",
+    "ehdir": "isdir",
+    "eharq": "isfile",
 }
 
 PYTHON_TO_PORTUGUESE_METHODS = {v: k for k, v in PORTUGUESE_METHODS.items()}
@@ -367,8 +374,19 @@ def translate_keywords(content, reverse=False):
             for source, target in method_mapping.items():
                 pattern = r"\." + re.escape(source) + r"\b"
                 translated_part = re.sub(pattern, "." + target, translated_part)
+            # The (?<!\.) lookbehind prevents the keyword pass from rewriting
+            # attribute names: e.g. `obj.data` (a user attribute) must stay
+            # `obj.data`, not become `obj.date`. Legitimate dotted renames are
+            # already handled by the method pass above; bare keywords and
+            # start-of-line keywords (e.g. `se x:` -> `if x:`) are unaffected.
+            #
+            # This does NOT fix bare-identifier collisions that are inherent to
+            # a regex translator with no scope analysis, e.g. a local variable
+            # named `data` -> `date`, or `except ... as e:` round-tripping to
+            # `except ... as and:` (since `e` -> `and`). Those require an
+            # AST-based pass; see testcases/FASTAPI_AUDIT.md.
             for source, target in mapping.items():
-                pattern = r"\b" + re.escape(source) + r"\b"
+                pattern = r"(?<!\.)\b" + re.escape(source) + r"\b"
                 translated_part = re.sub(pattern, target, translated_part)
             result_parts.append(translated_part)
 

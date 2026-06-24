@@ -52,4 +52,14 @@ pythonpath = ["."]
 [dependency-groups]
 dev = [
     "ruff>=0.14.10",
+    "pytest>=8.0",
+]
+# FastAPI integration test deps. Kept out of the default `dev` group because
+# modern FastAPI requires Python >= 3.10, while the CI matrix also covers
+# 3.8/3.9. Install explicitly with `uv sync --group fastapi` on a supported
+# interpreter (see the `fastapi-integration` job in .github/workflows/tests.yml).
+# httpx is required by FastAPI's TestClient.
+fastapi = [
+    "fastapi>=0.110",
+    "httpx>=0.27",
 ]

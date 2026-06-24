@@ -34,18 +34,60 @@ jobs:
       - name: Run tests
         run: |
           echo "🐍 Running tests on Python ${{ matrix.python-version }}"
+          # Unit tests (parser + phases). The FastAPI translation test skips
+          # automatically when FastAPI is not installed (it is not on this job).
+          uv run pytest -q test_phase1.py test_phase2.py test_phase3.py \
+            test_phase4.py test_phase5.py test_phase6.py test_phase7.py \
+            test_phase8.py tests/
+
           # Test pt2py translation
           uv run pt2py testcases/ola_mundo.pt
           uv run python testcases/ola_mundo.py
-          
+
           # Test other examples
           uv run pt2py testcases/controle_fluxo.pt
           uv run python testcases/controle_fluxo.py
-          
+
           uv run pt2py testcases/classes.pt
           uv run python testcases/classes.py
-          
+
           echo "✅ All tests passed!"
+
+      - name: Cleanup generated files
+        if: always()
+        run: |
+          rm -f testcases/*.py
+
+  # The "big test": translate a real FastAPI app written in Pitão and drive it
+  # with FastAPI's TestClient. FastAPI requires Python >= 3.10, so this runs on
+  # a single modern interpreter rather than the full matrix.
+  fastapi-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install dependencies (incl. FastAPI)
+        run: uv sync --group fastapi
+
+      - name: Translate and import the Pitão FastAPI app
+        run: |
+          uv run pt2py testcases/fastapi_app.pt
+          uv run python testcases/fastapi_app.py
+
+      - name: Run FastAPI behavioral + round-trip tests
+        run: uv run pytest -q tests/test_fastapi_translation.py
+
+      - name: Scale round-trip audit of FastAPI source
+        run: uv run python tests/audit_fastapi_roundtrip.py
 
       - name: Cleanup generated files
         if: always()
