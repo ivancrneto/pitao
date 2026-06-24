@@ -159,7 +159,7 @@ if __name__ == "__main__":
 | `como`       | `as`       |
 | `em`         | `in`       |
 | `eh`         | `is`       |
-| `com`        | `with`     |
+| `usando`     | `with`     |
 | `afirme`     | `assert`   |
 | `del`        | `del`      |
 | `global`     | `global`   |

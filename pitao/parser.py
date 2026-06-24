@@ -195,7 +195,11 @@ PORTUGUESE_TO_PYTHON = {
     "de": "from",
     "em": "in",
     "eh": "is",
+    # "com" kept as a backward-compatible alias; "usando" is the preferred
+    # keyword and is what py2pt emits (it wins the reverse-map below by
+    # being inserted last for the value "with").
     "com": "with",
+    "usando": "with",
     "global": "global",
     "naolocal": "nonlocal",
     "lambda": "lambda",

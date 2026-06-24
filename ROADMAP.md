@@ -80,7 +80,7 @@
 |-----------|--------|--------|
 | `em` | `in` | ✅ |
 | `eh` | `is` | ✅ |
-| `com` | `with` | ✅ |
+| `usando` | `with` | ✅ |
 | `afirme` | `assert` | ✅ |
 | `del` | `del` | ✅ |
 | `global` | `global` | ✅ |

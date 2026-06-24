@@ -83,7 +83,7 @@
         }
     ],
     "indentationRules": {
-        "increaseIndentPattern": "^\\s*(classe|def|para|enquanto|se|senaose|senao|tente|exceto|finalmente|com|assincrono)\\b.*:\\s*(#.*)?$",
+        "increaseIndentPattern": "^\\s*(classe|def|para|enquanto|se|senaose|senao|tente|exceto|finalmente|usando|com|assincrono)\\b.*:\\s*(#.*)?$",
         "decreaseIndentPattern": "^\\s*(senaose|senao|exceto|finalmente)\\b"
     },
     "folding": {

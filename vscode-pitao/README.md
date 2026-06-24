@@ -29,7 +29,7 @@ Realce de sintaxe para **Pitão** - Python com palavras-chave em Português.
 | `senao` | `else` | | `exceto` | `except` |
 | `para` | `for` | | `finalmente` | `finally` |
 | `enquanto` | `while` | | `levante` | `raise` |
-| `quebre` | `break` | | `com` | `with` |
+| `quebre` | `break` | | `usando` | `with` |
 | `continue` | `continue` | | `produza` | `yield` |
 | `def` | `def` | | `assincrono` | `async` |
 | `classe` | `class` | | `aguarde` | `await` |
