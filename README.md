@@ -4,15 +4,15 @@
   <img src="https://raw.githubusercontent.com/ivancrneto/pitao/main/pitao.jpg" alt="Pitão Logo" width="200"/>
 </p>
 
-**Pytão é um pré-processador que traduz código Portuguese → Python.**
+**Pitão é um pré-processador que traduz código Portuguese → Python.**
 
 > ⚠️ **Importante:** Pitão **não é** Python. É uma ferramenta de tradução. O código Python "real" é sempre em inglês. Nosso objetivo é ajudar falantes de português a aprender e escrever Python mais facilmente.
 
 ## O que é Pitão?
 
-Pytão permite escrever código usando palavras reservadas em português, que são automaticamente traduzidas para Python antes da execução.
+Pitão permite escrever código usando palavras reservadas em português, que são automaticamente traduzidas para Python antes da execução.
 
-**Pytão é Python - apenas com palavras em português.**
+**Pitão é Python - apenas com palavras em português.**
 
 ### Por que existe?
 
@@ -26,21 +26,21 @@ Pytão permite escrever código usando palavras reservadas em português, que s�
 - ❌ Um substituto para Python
 - ❌ Uma tentativa de "portugalizar" Python
 
-**Código Pytão é traduzido para Python real.** Você pode converter qualquer arquivo `.pt` para `.py` e obter Python padrão.
+**Código Pitão é traduzido para Python real.** Você pode converter qualquer arquivo `.pt` para `.py` e obter Python padrão.
 
 ---
 
 ## Instalação
 
 ```bash
-pip install pytão
+pip install pitao
 ```
 
 Ou para instalar localmente com `uv`:
 
 ```bash
-git clone https://github.com/ivancrneto/pytão.git
-cd pytão
+git clone https://github.com/ivancrneto/pitao.git
+cd pitao
 uv sync
 ```
 
@@ -69,7 +69,7 @@ se __nome__ == "__principal__":
 Execute com:
 
 ```bash
-pytão ola_mundo.pt
+pitao ola_mundo.pt
 # Saída: Olá, Mundo!
 ```
 
@@ -95,7 +95,7 @@ if __name__ == "__main__":
 - Suporte a métodos encadeados
 
 ### 🔄 Bidirecional
-- `pytão` → `python` (pytão para Python)
+- `pitao` → `python` (pitão para Python)
 - `pt2py` → Traduz .pt para .py
 - `py2pt` → Traduz .py para .pt
 
@@ -106,23 +106,23 @@ if __name__ == "__main__":
 
 ## Perguntas Frequentes
 
-**Pytão é Python?**
+**Pitão é Python?**
 > Tecnicamente não. É um pré-processador que traduz código português para Python. O resultado final é sempre Python real.
 
 **Posso usar bibliotecas Python?**
 > Sim! Bibliotecas são importadas normalmente. O código Python de bibliotecas permanece em inglês.
 
-**Pytão é para iniciantes?**
+**Pitão é para iniciantes?**
 > Principalmente. É uma ferramenta de aprendizagem. Python "real" sempre usará palavras em inglês.
 
-**Devo usar Pytão em produção?**
-> Não recomendamos. Python padrão é a linguagem - Pytão é apenas uma ferramenta de tradução.
+**Devo usar Pitão em produção?**
+> Não recomendamos. Python padrão é a linguagem - Pitão é apenas uma ferramenta de tradução.
 
 ## Documentação
 
 - [README](README.md) - Visão geral
 - [ROADMAP.md](ROADMAP.md) - Plano de desenvolvimento
-- [GUIA-MIGRACAO.md](GUIA-MIGRACAO.md) - Guia de migração Python ↔ Pytão
+- [GUIA-MIGRACAO.md](GUIA-MIGRACAO.md) - Guia de migração Python ↔ Pitão
 - [REFERENCIA-API.md](REFERENCIA-API.md) - Referência completa da API
 - [EXEMPLOS.md](EXEMPLOS.md) - Exemplos práticos
 - [FAQ.md](FAQ.md) - Perguntas frequentes
@@ -200,23 +200,23 @@ Pitão também suporta a tradução de algumas funções built-in do Python:
 
 ## Comandos
 
-### `pytão` - Executar arquivos Pytão
+### `pitao` - Executar arquivos Pitão
 
 ```bash
-pytão arquivo.pt [args...]     # Executa o arquivo
-pytão -c arquivo.pt            # Compila para .py sem executar
-pytão -k arquivo.pt           # Executa e mantém o .py gerado
-pytão -v arquivo.pt           # Modo verbose
+pitao arquivo.pt [args...]     # Executa o arquivo
+pitao -c arquivo.pt            # Compila para .py sem executar
+pitao -k arquivo.pt           # Executa e mantém o .py gerado
+pitao -v arquivo.pt           # Modo verbose
 ```
 
-### `pt2py` - Traduzir Pytão para Python
+### `pt2py` - Traduzir Pitão para Python
 
 ```bash
 pt2py arquivo.pt               # Cria arquivo.py
 pt2py -o saida.py arquivo.pt  # Especifica nome de saída
 ```
 
-### `py2pt` - Traduzir Python para Pytão
+### `py2pt` - Traduzir Python para Pitão
 
 ```bash
 py2pt arquivo.py               # Cria arquivo.pt
